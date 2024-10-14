@@ -1,17 +1,24 @@
 import streamlit as st
 import streamlit_shadcn_ui as ui
 import pandas as pd
-import joblib
+# import joblib
 from htbuilder import HtmlElement, div, ul, li, br, hr, a, p, img, styles, classes, fonts
 from htbuilder.units import percent, px
 import time
-# Tải các mô hình từ file .pkl
+import pickle
+
 models = {
-    "Naive Bayes": joblib.load("models/NB.pkl"),
-    # "Random Forest": joblib.load("models/RF.pkl"),
-    "Decision Tree": joblib.load("models/DT.pkl"),
-    "K-Nearest Neighbors": joblib.load("models/kNN.pkl")
+    "Naive Bayes": pickle.load(open("models/NB_pickle.pkl", "rb")),
+    # "Random Forest": pickle.load(open("models/RF.pkl", "rb")),
+    "Decision Tree": pickle.load(open("models/DT_pickle.pkl", "rb")),
+    "K-Nearest Neighbors": pickle.load(open("models/kNN_pickle.pkl", "rb"))
 }
+# models = {
+#     "Naive Bayes": joblib.load("models/NB.pkl"),
+#     # "Random Forest": joblib.load("models/RF.pkl"),
+#     "Decision Tree": joblib.load("models/DT.pkl"),
+#     "K-Nearest Neighbors": joblib.load("models/kNN.pkl")
+# }
 df = pd.read_csv('nearest-earth-objects(1910-2024).csv')
 
 # Hàm linear normalization
